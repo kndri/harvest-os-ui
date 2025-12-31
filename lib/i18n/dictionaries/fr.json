@@ -1,0 +1,22 @@
+{
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès"
+  },
+  "programs": {
+    "title": "Programmes",
+    "today": "Aujourd'hui",
+    "markComplete": "Marquer comme terminé",
+    "viewProgram": "Voir le programme"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "email": "Courriel",
+    "password": "Mot de passe"
+  }
+}

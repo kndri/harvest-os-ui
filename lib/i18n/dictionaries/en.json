@@ -1,0 +1,22 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success"
+  },
+  "programs": {
+    "title": "Programs",
+    "today": "Today",
+    "markComplete": "Mark as Completed",
+    "viewProgram": "View Program"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password"
+  }
+}
