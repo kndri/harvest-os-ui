@@ -15,7 +15,7 @@ export function ProgramCard({ program, locale }: ProgramCardProps) {
 
   return (
     <Link href={`/${locale}/programs/${program.slug}`} className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-white/[0.02] border border-white/5 backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/10 transition-all duration-300">
+      <div className="relative overflow-hidden rounded-2xl bg-white border border-[#e2e8f0] hover:border-[#cbd5e1] hover:shadow-lg transition-all duration-300">
         {/* Banner image */}
         {program.branding?.banner_url ? (
           <div className="relative h-48 overflow-hidden">
@@ -24,33 +24,33 @@ export function ProgramCard({ program, locale }: ProgramCardProps) {
               alt={title}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent" />
           </div>
         ) : (
           <div 
             className="h-48 relative"
             style={{ 
-              background: `linear-gradient(135deg, ${primaryColor}40 0%, ${primaryColor}10 100%)` 
+              background: `linear-gradient(135deg, ${primaryColor}20 0%, ${primaryColor}05 100%)` 
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/90 to-transparent" />
           </div>
         )}
 
         {/* Content */}
         <div className="p-6">
-          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+          <h3 className="text-xl font-semibold text-[#1c1f24] mb-2 group-hover:text-emerald-600 transition-colors">
             {title}
           </h3>
           
           {description && (
-            <p className="text-slate-400 line-clamp-2 mb-4">
+            <p className="text-[#64748b] line-clamp-2 mb-4">
               {description}
             </p>
           )}
 
           {/* Program info */}
-          <div className="flex items-center gap-4 text-sm text-slate-500">
+          <div className="flex items-center gap-4 text-sm text-[#94a3b8]">
             {program.duration_days && (
               <span className="flex items-center gap-1">
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,17 +73,17 @@ export function ProgramCard({ program, locale }: ProgramCardProps) {
           {/* Module badges */}
           <div className="flex flex-wrap gap-2 mt-4">
             {program.config?.resources && (
-              <span className="px-2 py-1 text-xs rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">
+              <span className="px-2 py-1 text-xs rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                 {locale === 'fr' ? 'Ressources' : 'Resources'}
               </span>
             )}
             {program.config?.prayer_wall && (
-              <span className="px-2 py-1 text-xs rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+              <span className="px-2 py-1 text-xs rounded-full bg-amber-50 text-amber-700 border border-amber-200">
                 {locale === 'fr' ? 'Mur de Prière' : 'Prayer Wall'}
               </span>
             )}
             {program.config?.events && (
-              <span className="px-2 py-1 text-xs rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30">
+              <span className="px-2 py-1 text-xs rounded-full bg-purple-50 text-purple-700 border border-purple-200">
                 {locale === 'fr' ? 'Événements' : 'Events'}
               </span>
             )}

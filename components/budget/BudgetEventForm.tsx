@@ -76,23 +76,23 @@ export function BudgetEventForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl bg-white p-6 rounded-lg border">
+    <form onSubmit={handleSubmit} className="max-w-4xl bg-white p-8 rounded-2xl border border-[#e2e8f0] shadow-sm">
       {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
           {error}
         </div>
       )}
 
-      <div className="space-y-4">
+      <div className="space-y-6">
         <div>
-          <label htmlFor="org_id" className="block text-sm font-medium mb-1">
+          <label htmlFor="org_id" className="block text-sm font-semibold text-[#334e62] mb-2">
             Organization *
           </label>
           <select
             id="org_id"
             value={formData.org_id}
             onChange={(e) => setFormData({ ...formData, org_id: e.target.value })}
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             required
             disabled={!!budgetEvent}
           >
@@ -105,7 +105,7 @@ export function BudgetEventForm({
         </div>
 
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1">
+          <label htmlFor="name" className="block text-sm font-semibold text-[#334e62] mb-2">
             Event Name *
           </label>
           <input
@@ -113,13 +113,13 @@ export function BudgetEventForm({
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             required
           />
         </div>
 
         <div>
-          <label htmlFor="description" className="block text-sm font-medium mb-1">
+          <label htmlFor="description" className="block text-sm font-semibold text-[#334e62] mb-2">
             Description
           </label>
           <textarea
@@ -128,14 +128,14 @@ export function BudgetEventForm({
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-            className="w-full px-3 py-2 border rounded-lg"
-            rows={3}
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none transition-all"
+            rows={4}
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <div>
-            <label htmlFor="start_date" className="block text-sm font-medium mb-1">
+            <label htmlFor="start_date" className="block text-sm font-semibold text-[#334e62] mb-2">
               Start Date
             </label>
             <input
@@ -145,12 +145,12 @@ export function BudgetEventForm({
               onChange={(e) =>
                 setFormData({ ...formData, start_date: e.target.value })
               }
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
           </div>
 
           <div>
-            <label htmlFor="end_date" className="block text-sm font-medium mb-1">
+            <label htmlFor="end_date" className="block text-sm font-semibold text-[#334e62] mb-2">
               End Date
             </label>
             <input
@@ -160,13 +160,13 @@ export function BudgetEventForm({
               onChange={(e) =>
                 setFormData({ ...formData, end_date: e.target.value })
               }
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="status" className="block text-sm font-medium mb-1">
+          <label htmlFor="status" className="block text-sm font-semibold text-[#334e62] mb-2">
             Status
           </label>
           <select
@@ -178,7 +178,7 @@ export function BudgetEventForm({
                 status: e.target.value as 'draft' | 'active' | 'closed',
               })
             }
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
           >
             <option value="draft">Draft</option>
             <option value="active">Active</option>
@@ -186,18 +186,18 @@ export function BudgetEventForm({
           </select>
         </div>
 
-        <div className="flex gap-3 pt-4">
+        <div className="flex gap-4 pt-6 border-t border-[#e2e8f0]">
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 disabled:opacity-50 font-medium"
           >
             {loading ? 'Saving...' : budgetEvent ? 'Update' : 'Create'}
           </button>
           <button
             type="button"
             onClick={() => router.back()}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+            className="px-6 py-3 bg-[#f2f4f6] text-[#334e62] rounded-xl hover:bg-[#e2e8f0] transition-colors border border-[#e2e8f0] font-medium"
           >
             Cancel
           </button>

@@ -1,7 +1,8 @@
 import { createServerClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import { ResourcesClient } from '@/components/resources/ResourcesClient';
-import { Resource } from '@/lib/types';
+import { ProgramNav } from '@/components/programs';
+import { Resource, Program } from '@/lib/types';
 
 export default async function ResourcesPage({
   params,
@@ -19,7 +20,7 @@ export default async function ResourcesPage({
   // Get program first
   const { data: program } = await supabase
     .from('programs')
-    .select('id')
+    .select('*')
     .eq('slug', slug)
     .single();
   
@@ -62,12 +63,15 @@ export default async function ResourcesPage({
   ).sort();
   
   return (
-    <ResourcesClient
-      resources={resources || []}
-      categories={categories}
-      locale={locale}
-      programSlug={slug}
-      selectedCategory={category || 'all'}
-    />
+    <div className="min-h-screen bg-white">
+      <ProgramNav program={program as Program} locale={locale} />
+      <ResourcesClient
+        resources={resources || []}
+        categories={categories}
+        locale={locale}
+        programSlug={slug}
+        selectedCategory={category || 'all'}
+      />
+    </div>
   );
 }

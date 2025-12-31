@@ -59,20 +59,20 @@ export function Testimonials({ locale }: { locale: 'en' | 'fr' }) {
   const testimonialList = testimonials[locale];
 
   return (
-    <section className="relative py-32 bg-gradient-to-b from-slate-950 to-slate-900 overflow-hidden">
+    <section className="relative py-32 bg-gradient-to-b from-white via-[#fafbfc] to-white overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-[#cab3d9]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium tracking-wide uppercase mb-6">
+          <span className="inline-block px-4 py-2 rounded-full bg-[#f9e0ca]/50 border border-[#f9e0ca] text-[#334e62] text-sm font-medium tracking-wide uppercase mb-6">
             {t.tagline}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1c1f24]">
             {t.headline}
           </h2>
         </div>
@@ -82,27 +82,27 @@ export function Testimonials({ locale }: { locale: 'en' | 'fr' }) {
           {testimonialList.map((testimonial, i) => (
             <div
               key={i}
-              className="relative p-8 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-sm hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300"
+              className="relative p-8 rounded-2xl bg-white border border-[#e2e8f0] hover:border-[#cbd5e1] hover:shadow-lg transition-all duration-300"
             >
               {/* Quote mark */}
-              <div className="absolute top-6 right-8 text-6xl text-emerald-500/20 font-serif">
+              <div className="absolute top-6 right-8 text-6xl text-emerald-500/10 font-serif">
                 "
               </div>
 
               <blockquote className="relative">
-                <p className="text-slate-300 leading-relaxed mb-8">
+                <p className="text-[#334e62] leading-relaxed mb-8">
                   "{testimonial.quote}"
                 </p>
 
                 <footer className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center text-white font-semibold">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-white font-semibold shadow-md">
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <div className="font-semibold text-white">
+                    <div className="font-semibold text-[#1c1f24]">
                       {testimonial.author}
                     </div>
-                    <div className="text-sm text-slate-500">
+                    <div className="text-sm text-[#64748b]">
                       {testimonial.role}
                     </div>
                   </div>

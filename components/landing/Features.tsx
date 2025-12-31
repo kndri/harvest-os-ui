@@ -108,22 +108,22 @@ function FeatureCard({
   return (
     <div
       ref={ref}
-      className={`group relative p-8 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/10 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+      className={`group relative p-8 rounded-2xl bg-white border border-[#e2e8f0] hover:border-[#cbd5e1] hover:shadow-lg transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
     >
-      {/* Gradient glow on hover */}
-      <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+      {/* Subtle gradient glow on hover */}
+      <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-300`} />
       
       <div className="relative">
         {/* Icon */}
-        <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} text-2xl mb-6 shadow-lg`}>
+        <div className={`inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br ${feature.gradient} text-2xl mb-6 shadow-md`}>
           {feature.icon}
         </div>
 
-        <h3 className="text-xl font-semibold text-white mb-3">
+        <h3 className="text-xl font-semibold text-[#1c1f24] mb-3">
           {feature.title}
         </h3>
 
-        <p className="text-slate-400 leading-relaxed">
+        <p className="text-[#64748b] leading-relaxed">
           {feature.description}
         </p>
       </div>
@@ -149,7 +149,7 @@ export function Features({ locale }: { locale: 'en' | 'fr' }) {
   const featureList = features[locale];
 
   return (
-    <section id="features" className="relative py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+    <section id="features" className="relative py-32 bg-gradient-to-b from-white via-[#fafbfc] to-white">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-emerald-500/5 rounded-full blur-3xl" />
@@ -158,13 +158,13 @@ export function Features({ locale }: { locale: 'en' | 'fr' }) {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section header */}
         <div className="text-center mb-20">
-          <span className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium tracking-wide uppercase mb-6">
+          <span className="inline-block px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 text-sm font-medium tracking-wide uppercase mb-6">
             {t.tagline}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#1c1f24] mb-6">
             {t.headline}
           </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xl text-[#64748b] max-w-2xl mx-auto">
             {t.subheadline}
           </p>
         </div>

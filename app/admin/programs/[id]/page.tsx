@@ -22,8 +22,11 @@ export default async function EditProgramPage({
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-white mb-8">Edit Program</h1>
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">Edit Program</h1>
+        <p className="text-[#64748b]">Update program details and settings</p>
+      </div>
       <EditProgramForm program={program as Program} />
     </div>
   );

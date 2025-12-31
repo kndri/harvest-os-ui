@@ -82,15 +82,15 @@ export function RevenueClient({
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">Revenue</h2>
+        <h2 className="text-2xl font-semibold text-[#1c1f24]">Revenue</h2>
         <button
           onClick={() => {
             setEditingRevenue(null);
             setShowForm(true);
           }}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 font-medium"
         >
-          Add Revenue Item
+          + Add Revenue Item
         </button>
       </div>
 
@@ -113,18 +113,18 @@ export function RevenueClient({
           {revenue.map((item) => (
             <div
               key={item.id}
-              className="bg-white border rounded-lg p-6"
+              className="bg-white border border-[#e2e8f0] rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="flex justify-between items-start mb-4">
+              <div className="flex justify-between items-start mb-4 pb-4 border-b border-[#e2e8f0]">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="px-2 py-1 text-xs font-semibold rounded bg-blue-100 text-blue-800">
+                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700 border border-blue-200">
                       {item.type}
                     </span>
-                    <h3 className="font-semibold">{item.description}</h3>
+                    <h3 className="font-semibold text-[#1c1f24]">{item.description}</h3>
                   </div>
                   {item.pledger_name && (
-                    <p className="text-sm text-gray-600">Pledger: {item.pledger_name}</p>
+                    <p className="text-sm text-[#64748b]">Pledger: <span className="font-medium text-[#334e62]">{item.pledger_name}</span></p>
                   )}
                 </div>
                 <div className="flex gap-2">
@@ -133,13 +133,13 @@ export function RevenueClient({
                       setEditingRevenue(item);
                       setShowForm(true);
                     }}
-                    className="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+                    className="px-3 py-1.5 text-sm bg-[#f2f4f6] text-[#334e62] rounded-lg hover:bg-[#e2e8f0] transition-colors font-medium border border-[#e2e8f0]"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(item.id)}
-                    className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+                    className="px-3 py-1.5 text-sm bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium border border-red-200"
                   >
                     Delete
                   </button>
@@ -148,22 +148,22 @@ export function RevenueClient({
 
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <div className="text-sm text-gray-600">Amount</div>
-                  <div className="text-lg font-semibold">
+                  <div className="text-sm text-[#64748b] mb-1">Amount</div>
+                  <div className="text-xl font-semibold text-[#1c1f24]">
                     ${Number(item.amount).toLocaleString()}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">Received</div>
-                  <div className="text-lg font-semibold">
+                  <div className="text-sm text-[#64748b] mb-1">Received</div>
+                  <div className="text-xl font-semibold text-[#1c1f24]">
                     ${Number(item.received_amount).toLocaleString()}
                   </div>
                 </div>
                 <div>
-                  <div className="text-sm text-gray-600">Balance</div>
+                  <div className="text-sm text-[#64748b] mb-1">Balance</div>
                   <div
-                    className={`text-lg font-semibold ${
-                      Number(item.balance) > 0 ? 'text-orange-600' : 'text-green-600'
+                    className={`text-xl font-semibold ${
+                      Number(item.balance) > 0 ? 'text-amber-600' : 'text-emerald-600'
                     }`}
                   >
                     ${Number(item.balance).toLocaleString()}
@@ -172,10 +172,10 @@ export function RevenueClient({
               </div>
 
               {item.type === 'pledge' && Number(item.balance) > 0 && (
-                <div className="mt-4 pt-4 border-t">
+                <div className="mt-4 pt-4 border-t border-[#e2e8f0]">
                   <button
                     onClick={() => handleRecordPayment(item.id, Number(item.received_amount))}
-                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                    className="px-4 py-2 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-md font-medium"
                   >
                     Record Payment
                   </button>
@@ -185,14 +185,14 @@ export function RevenueClient({
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 bg-white rounded-lg border">
-          <p className="text-gray-600 mb-4">No revenue items yet.</p>
+        <div className="text-center py-12 bg-white rounded-2xl border border-[#e2e8f0]">
+          <p className="text-[#64748b] font-medium mb-4">No revenue items yet.</p>
           <button
             onClick={() => {
               setEditingRevenue(null);
               setShowForm(true);
             }}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 font-medium"
           >
             Add Your First Revenue Item
           </button>

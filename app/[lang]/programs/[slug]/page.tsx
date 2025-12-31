@@ -1,8 +1,7 @@
 import { createServerClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
-import { ProgramOverview } from '@/components/programs';
+import { ProgramOverview, ProgramNav } from '@/components/programs';
 import { Program, ProgramDay, Locale, UserDayProgress } from '@/types';
-import { Navbar } from '@/components/landing/Navbar';
 
 export default async function ProgramPage({
   params,
@@ -69,17 +68,15 @@ export default async function ProgramPage({
   }
 
   return (
-    <>
-      <Navbar locale={locale} />
-      <div className="pt-20">
-        <ProgramOverview 
-          program={program as Program}
-          days={(days || []) as ProgramDay[]}
-          locale={locale}
-          todayIndex={todayIndex}
-          userProgress={userProgress}
-        />
-      </div>
-    </>
+    <div className="min-h-screen bg-white">
+      <ProgramNav program={program as Program} locale={locale} />
+      <ProgramOverview 
+        program={program as Program}
+        days={(days || []) as ProgramDay[]}
+        locale={locale}
+        todayIndex={todayIndex}
+        userProgress={userProgress}
+      />
+    </div>
   );
 }

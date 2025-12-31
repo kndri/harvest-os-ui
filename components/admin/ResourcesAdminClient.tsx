@@ -59,19 +59,22 @@ export function ResourcesAdminClient({
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Resources</h1>
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">Resources</h1>
+          <p className="text-[#64748b]">Manage program resources and files</p>
+        </div>
         <button
           onClick={() => setShowForm(true)}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 font-medium"
         >
-          Upload Resource
+          + Upload Resource
         </button>
       </div>
 
       {showForm && (
-        <div className="mb-8">
+        <div className="mb-8 bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
           <ResourceUploadForm
             programId={programId}
             onSuccess={handleFormSuccess}
@@ -85,32 +88,32 @@ export function ResourcesAdminClient({
           {resources.map((resource) => (
             <div
               key={resource.id}
-              className="border rounded-lg p-6 bg-white"
+              className="border border-[#e2e8f0] rounded-xl p-6 bg-white hover:shadow-md transition-shadow"
             >
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex justify-between items-start mb-3">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold">{resource.title_en}</h3>
+                  <h3 className="text-lg font-semibold text-[#1c1f24]">{resource.title_en}</h3>
                   {resource.title_fr && (
-                    <p className="text-sm text-gray-600">{resource.title_fr}</p>
+                    <p className="text-sm text-[#64748b] mt-1">{resource.title_fr}</p>
                   )}
                   {resource.category && (
-                    <span className="inline-block mt-1 text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                    <span className="inline-block mt-2 text-xs bg-blue-50 text-blue-700 px-3 py-1 rounded-full font-medium border border-blue-200">
                       {resource.category}
                     </span>
                   )}
                 </div>
                 <button
                   onClick={() => handleDelete(resource.id)}
-                  className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+                  className="px-3 py-1.5 text-sm bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium border border-red-200"
                 >
                   Delete
                 </button>
               </div>
               {resource.description_en && (
-                <p className="text-sm text-gray-600 mb-2">{resource.description_en}</p>
+                <p className="text-sm text-[#64748b] mb-3">{resource.description_en}</p>
               )}
-              <div className="flex items-center gap-4 text-xs text-gray-500">
-                {resource.file_type && <span className="uppercase">{resource.file_type}</span>}
+              <div className="flex items-center gap-4 text-xs text-[#94a3b8]">
+                {resource.file_type && <span className="uppercase font-medium">{resource.file_type}</span>}
                 {resource.file_size && <span>{formatFileSize(resource.file_size)}</span>}
                 <span>{resource.download_count} downloads</span>
                 <span>Language: {resource.language}</span>
@@ -119,7 +122,9 @@ export function ResourcesAdminClient({
           ))}
         </div>
       ) : (
-        <p className="text-gray-600 text-center py-12">No resources yet.</p>
+        <div className="text-center py-12 bg-white rounded-2xl border border-[#e2e8f0]">
+          <p className="text-[#64748b] font-medium">No resources yet.</p>
+        </div>
       )}
     </div>
   );

@@ -24,13 +24,13 @@ export function ResourceFilter({ categories, locale }: ResourceFilterProps) {
   };
 
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
+    <div className="flex flex-wrap gap-2">
       <button
         onClick={() => updateFilter('all')}
-        className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+        className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
           selectedCategory === 'all'
-            ? 'bg-blue-600 text-white'
-            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/25'
+            : 'bg-[#f2f4f6] text-[#64748b] hover:bg-[#e2e8f0] hover:text-[#1c1f24] border border-[#e2e8f0]'
         }`}
       >
         {locale === 'fr' ? 'Tous' : 'All'}
@@ -39,10 +39,10 @@ export function ResourceFilter({ categories, locale }: ResourceFilterProps) {
         <button
           key={category}
           onClick={() => updateFilter(category)}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
             selectedCategory === category
-              ? 'bg-blue-600 text-white'
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/25'
+              : 'bg-[#f2f4f6] text-[#64748b] hover:bg-[#e2e8f0] hover:text-[#1c1f24] border border-[#e2e8f0]'
           }`}
         >
           {category}

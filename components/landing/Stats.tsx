@@ -61,20 +61,20 @@ export function Stats({ locale }: { locale: 'en' | 'fr' }) {
   const content = stats[locale];
 
   return (
-    <section className="relative py-24 bg-slate-950">
+    <section className="relative py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="relative rounded-3xl bg-gradient-to-br from-emerald-500/10 via-transparent to-amber-500/10 border border-white/5 p-12 md:p-16 overflow-hidden">
+        <div className="relative rounded-3xl bg-gradient-to-br from-[#f2f4f6] via-white to-[#fafbfc] border border-[#e2e8f0] p-12 md:p-16 overflow-hidden shadow-sm">
           {/* Decorative elements */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#cab3d9]/10 rounded-full blur-3xl" />
 
           <div className="relative grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {content.map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent mb-2">
+                <div className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#1c1f24] to-[#334e62] bg-clip-text text-transparent mb-2">
                   <AnimatedNumber value={stat.value} suffix={stat.suffix} />
                 </div>
-                <div className="text-slate-400 font-medium">
+                <div className="text-[#64748b] font-medium">
                   {stat.label}
                 </div>
               </div>

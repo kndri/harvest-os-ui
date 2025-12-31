@@ -32,10 +32,13 @@ export default async function PrayerModerationPage({
     .order('created_at', { ascending: false });
   
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">
-        Prayer Request Moderation - {program.title_en}
-      </h1>
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">
+          Prayer Request Moderation
+        </h1>
+        <p className="text-[#64748b]">{program.title_en}</p>
+      </div>
       <PrayerModerationClient
         requests={pendingRequests || []}
         programId={id}

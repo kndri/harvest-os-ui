@@ -47,22 +47,25 @@ export function EventsAdminClient({
   };
 
   return (
-    <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Events</h1>
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">Events</h1>
+          <p className="text-[#64748b]">Manage program events and sessions</p>
+        </div>
         <button
           onClick={() => {
             setEditingEvent(null);
             setShowForm(true);
           }}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 font-medium"
         >
-          Create Event
+          + Create Event
         </button>
       </div>
 
       {showForm && (
-        <div className="mb-8">
+        <div className="mb-8 bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
           <EventForm
             programId={programId}
             speakers={speakers}
@@ -81,13 +84,13 @@ export function EventsAdminClient({
           {events.map((event) => (
             <div
               key={event.id}
-              className="border rounded-lg p-6 bg-white"
+              className="border border-[#e2e8f0] rounded-xl p-6 bg-white hover:shadow-md transition-shadow"
             >
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex justify-between items-start mb-3">
                 <div className="flex-1">
-                  <h3 className="text-lg font-semibold">{event.title_en}</h3>
+                  <h3 className="text-lg font-semibold text-[#1c1f24]">{event.title_en}</h3>
                   {event.title_fr && (
-                    <p className="text-sm text-gray-600">{event.title_fr}</p>
+                    <p className="text-sm text-[#64748b] mt-1">{event.title_fr}</p>
                   )}
                 </div>
                 <div className="flex gap-2">
@@ -96,37 +99,41 @@ export function EventsAdminClient({
                       setEditingEvent(event);
                       setShowForm(true);
                     }}
-                    className="px-3 py-1 text-sm bg-gray-200 text-gray-700 rounded hover:bg-gray-300"
+                    className="px-3 py-1.5 text-sm bg-[#f2f4f6] text-[#334e62] rounded-lg hover:bg-[#e2e8f0] transition-colors font-medium border border-[#e2e8f0]"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(event.id)}
-                    className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
+                    className="px-3 py-1.5 text-sm bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium border border-red-200"
                   >
                     Delete
                   </button>
                 </div>
               </div>
-              <p className="text-sm text-gray-600 mb-2">
-                {format(new Date(event.starts_at), 'MMM d, yyyy h:mm a')}
-                {event.ends_at && (
-                  <> - {format(new Date(event.ends_at), 'h:mm a')}</>
-                )}
-              </p>
-              {event.speaker && (
-                <p className="text-sm text-gray-600">
-                  Speaker: {event.speaker.name}
+              <div className="space-y-1 text-sm text-[#64748b]">
+                <p className="font-medium">
+                  📅 {format(new Date(event.starts_at), 'MMM d, yyyy h:mm a')}
+                  {event.ends_at && (
+                    <> - {format(new Date(event.ends_at), 'h:mm a')}</>
+                  )}
                 </p>
-              )}
-              {event.location && (
-                <p className="text-sm text-gray-600">📍 {event.location}</p>
-              )}
+                {event.speaker && (
+                  <p>
+                    👤 Speaker: <span className="font-medium text-[#334e62]">{event.speaker.name}</span>
+                  </p>
+                )}
+                {event.location && (
+                  <p>📍 {event.location}</p>
+                )}
+              </div>
             </div>
           ))}
         </div>
       ) : (
-        <p className="text-gray-600 text-center py-12">No events yet.</p>
+        <div className="text-center py-12 bg-white rounded-2xl border border-[#e2e8f0]">
+          <p className="text-[#64748b] font-medium">No events yet.</p>
+        </div>
       )}
     </div>
   );

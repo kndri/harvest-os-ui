@@ -94,79 +94,85 @@ export function ResourceUploadForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border rounded-lg p-6 bg-white">
-      <h2 className="text-xl font-semibold mb-4">Upload Resource</h2>
+    <form onSubmit={handleSubmit} className="border border-[#e2e8f0] rounded-xl p-6 bg-white shadow-sm">
+      <h2 className="text-xl font-semibold text-[#1c1f24] mb-6">Upload Resource</h2>
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Title (English) *
-          </label>
-          <input
-            type="text"
-            value={titleEn}
-            onChange={(e) => setTitleEn(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Title (French)
-          </label>
-          <input
-            type="text"
-            value={titleFr}
-            onChange={(e) => setTitleFr(e.target.value)}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Description (English)
-          </label>
-          <textarea
-            value={descriptionEn}
-            onChange={(e) => setDescriptionEn(e.target.value)}
-            className="w-full p-2 border rounded min-h-[100px]"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Description (French)
-          </label>
-          <textarea
-            value={descriptionFr}
-            onChange={(e) => setDescriptionFr(e.target.value)}
-            className="w-full p-2 border rounded min-h-[100px]"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
+      <div className="space-y-5">
+        <div className="grid md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Title (English) *
+            </label>
+            <input
+              type="text"
+              value={titleEn}
+              onChange={(e) => setTitleEn(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Title (French)
+            </label>
+            <input
+              type="text"
+              value={titleFr}
+              onChange={(e) => setTitleFr(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+            />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Description (English)
+            </label>
+            <textarea
+              value={descriptionEn}
+              onChange={(e) => setDescriptionEn(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none transition-all"
+              rows={4}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Description (French)
+            </label>
+            <textarea
+              value={descriptionFr}
+              onChange={(e) => setDescriptionFr(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none transition-all"
+              rows={4}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
               Category
             </label>
             <input
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
               placeholder="e.g., Handout, Guide, Video"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
               Language
             </label>
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value as 'en' | 'fr' | 'both')}
-              className="w-full p-2 border rounded"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             >
               <option value="both">Both</option>
               <option value="en">English</option>
@@ -176,44 +182,46 @@ export function ResourceUploadForm({
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="block text-sm font-semibold text-[#334e62] mb-2">
             File *
           </label>
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="w-full p-2 border rounded"
-            required
-          />
+          <div className="relative">
+            <input
+              type="file"
+              onChange={handleFileChange}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-emerald-500 file:text-white hover:file:bg-emerald-600"
+              required
+            />
+          </div>
           {file && (
-            <p className="text-sm text-gray-600 mt-1">
+            <p className="text-sm text-[#64748b] mt-2 font-medium">
               Selected: {file.name} ({(file.size / 1024).toFixed(1)} KB)
             </p>
           )}
         </div>
 
         {uploadProgress > 0 && uploadProgress < 100 && (
-          <div className="w-full bg-gray-200 rounded-full h-2.5">
+          <div className="w-full bg-[#e2e8f0] rounded-full h-3 overflow-hidden">
             <div
-              className="bg-blue-600 h-2.5 rounded-full transition-all"
+              className="bg-emerald-500 h-3 rounded-full transition-all"
               style={{ width: `${uploadProgress}%` }}
             />
           </div>
         )}
       </div>
 
-      <div className="flex gap-3 mt-6">
+      <div className="flex gap-4 mt-6 pt-6 border-t border-[#e2e8f0]">
         <button
           type="submit"
           disabled={isSubmitting || !file}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
         >
           {isSubmitting ? 'Uploading...' : 'Upload'}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+          className="px-6 py-3 bg-[#f2f4f6] text-[#334e62] rounded-xl hover:bg-[#e2e8f0] transition-colors border border-[#e2e8f0] font-medium"
         >
           Cancel
         </button>

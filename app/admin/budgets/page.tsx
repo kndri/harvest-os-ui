@@ -19,12 +19,14 @@ export default async function BudgetsPage() {
     .in('role', ['finance', 'admin']);
 
   if (!memberships || memberships.length === 0) {
-    return (
-      <div>
-        <h1 className="text-2xl font-bold mb-4">Budget Events</h1>
-        <p className="text-gray-600">You don't have access to any organizations with budget permissions.</p>
-      </div>
-    );
+      return (
+        <div className="max-w-7xl mx-auto px-6 py-8">
+          <h1 className="text-3xl font-bold text-[#1c1f24] mb-4">Budget Events</h1>
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-amber-800">
+            <p>You don't have access to any organizations with budget permissions.</p>
+          </div>
+        </div>
+      );
   }
 
   // Get budget events for all accessible orgs

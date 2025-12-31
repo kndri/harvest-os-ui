@@ -78,94 +78,100 @@ export function EventForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border rounded-lg p-6 bg-white">
-      <h2 className="text-xl font-semibold mb-4">
+    <form onSubmit={handleSubmit} className="border border-[#e2e8f0] rounded-xl p-6 bg-white shadow-sm">
+      <h2 className="text-xl font-semibold text-[#1c1f24] mb-6">
         {event ? 'Edit Event' : 'Create Event'}
       </h2>
 
-      <div className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Title (English) *
-          </label>
-          <input
-            type="text"
-            value={titleEn}
-            onChange={(e) => setTitleEn(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Title (French)
-          </label>
-          <input
-            type="text"
-            value={titleFr}
-            onChange={(e) => setTitleFr(e.target.value)}
-            className="w-full p-2 border rounded"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Description (English)
-          </label>
-          <textarea
-            value={descriptionEn}
-            onChange={(e) => setDescriptionEn(e.target.value)}
-            className="w-full p-2 border rounded min-h-[100px]"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Description (French)
-          </label>
-          <textarea
-            value={descriptionFr}
-            onChange={(e) => setDescriptionFr(e.target.value)}
-            className="w-full p-2 border rounded min-h-[100px]"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
+      <div className="space-y-5">
+        <div className="grid md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Title (English) *
+            </label>
+            <input
+              type="text"
+              value={titleEn}
+              onChange={(e) => setTitleEn(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Title (French)
+            </label>
+            <input
+              type="text"
+              value={titleFr}
+              onChange={(e) => setTitleFr(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+            />
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Description (English)
+            </label>
+            <textarea
+              value={descriptionEn}
+              onChange={(e) => setDescriptionEn(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none transition-all"
+              rows={4}
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Description (French)
+            </label>
+            <textarea
+              value={descriptionFr}
+              onChange={(e) => setDescriptionFr(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none transition-all"
+              rows={4}
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
               Starts At *
             </label>
             <input
               type="datetime-local"
               value={startsAt}
               onChange={(e) => setStartsAt(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
               Ends At
             </label>
             <input
               type="datetime-local"
               value={endsAt}
               onChange={(e) => setEndsAt(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium mb-1">
+          <label className="block text-sm font-semibold text-[#334e62] mb-2">
             Speaker
           </label>
           <select
             value={speakerId}
             onChange={(e) => setSpeakerId(e.target.value)}
-            className="w-full p-2 border rounded"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
           >
             <option value="">None</option>
             {speakers.map((speaker) => (
@@ -176,43 +182,45 @@ export function EventForm({
           </select>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Location
-          </label>
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            className="w-full p-2 border rounded"
-          />
-        </div>
+        <div className="grid grid-cols-2 gap-5">
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Location
+            </label>
+            <input
+              type="text"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+            />
+          </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-1">
-            Livestream URL
-          </label>
-          <input
-            type="url"
-            value={livestreamUrl}
-            onChange={(e) => setLivestreamUrl(e.target.value)}
-            className="w-full p-2 border rounded"
-          />
+          <div>
+            <label className="block text-sm font-semibold text-[#334e62] mb-2">
+              Livestream URL
+            </label>
+            <input
+              type="url"
+              value={livestreamUrl}
+              onChange={(e) => setLivestreamUrl(e.target.value)}
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
+            />
+          </div>
         </div>
       </div>
 
-      <div className="flex gap-3 mt-6">
+      <div className="flex gap-4 mt-6 pt-6 border-t border-[#e2e8f0]">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
         >
           {isSubmitting ? 'Saving...' : event ? 'Update' : 'Create'}
         </button>
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+          className="px-6 py-3 bg-[#f2f4f6] text-[#334e62] rounded-xl hover:bg-[#e2e8f0] transition-colors border border-[#e2e8f0] font-medium"
         >
           Cancel
         </button>

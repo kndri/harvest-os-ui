@@ -42,13 +42,13 @@ export function DayContent({
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-8">
         <div>
-          <div className="text-sm text-emerald-400 font-medium uppercase tracking-wide mb-1">
+          <div className="text-sm text-emerald-600 font-semibold uppercase tracking-wide mb-2">
             {locale === 'fr' ? 'Jour' : 'Day'} {day.day_index}
           </div>
           {title && (
-            <h1 className="text-3xl font-bold text-white">{title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold text-[#1c1f24]">{title}</h1>
           )}
         </div>
         
@@ -56,10 +56,10 @@ export function DayContent({
           <button
             onClick={onMarkComplete}
             disabled={isLoading || !!progress?.completed_at}
-            className={`px-6 py-3 rounded-full font-medium transition-all ${
+            className={`px-6 py-3 rounded-xl font-medium transition-all ${
               progress?.completed_at
-                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/50'
-                : 'bg-emerald-500 text-white hover:bg-emerald-600'
+                ? 'bg-emerald-50 text-emerald-700 border-2 border-emerald-500'
+                : 'bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/25'
             }`}
           >
             {progress?.completed_at ? (
@@ -78,12 +78,12 @@ export function DayContent({
 
       {/* Devotional */}
       {devotional && (
-        <section className="bg-white/[0.02] rounded-xl p-6 border border-white/5">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">📖</span>
             {locale === 'fr' ? 'Dévotionnel' : 'Devotional'}
           </h2>
-          <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+          <div className="text-[#64748b] leading-relaxed whitespace-pre-wrap">
             {devotional}
           </div>
         </section>
@@ -91,16 +91,16 @@ export function DayContent({
 
       {/* Scriptures */}
       {scriptures && scriptures.length > 0 && (
-        <section className="bg-white/[0.02] rounded-xl p-6 border border-white/5">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">✝️</span>
             {locale === 'fr' ? 'Écritures' : 'Scriptures'}
           </h2>
           <ul className="space-y-2">
             {scriptures.map((scripture, i) => (
-              <li key={i} className="text-slate-300 flex items-start gap-2">
-                <span className="text-emerald-400 mt-1">•</span>
-                {scripture}
+              <li key={i} className="text-[#64748b] flex items-start gap-2">
+                <span className="text-emerald-600 mt-1 font-semibold">•</span>
+                <span>{scripture}</span>
               </li>
             ))}
           </ul>
@@ -109,12 +109,12 @@ export function DayContent({
 
       {/* Prayer Focus */}
       {prayerFocus && (
-        <section className="bg-amber-500/5 rounded-xl p-6 border border-amber-500/20">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-amber-50 border border-amber-200 rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">🙏</span>
             {locale === 'fr' ? 'Focus de Prière' : 'Prayer Focus'}
           </h2>
-          <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+          <div className="text-[#64748b] leading-relaxed whitespace-pre-wrap">
             {prayerFocus}
           </div>
         </section>
@@ -122,12 +122,12 @@ export function DayContent({
 
       {/* Fasting Focus */}
       {fastingFocus && (
-        <section className="bg-purple-500/5 rounded-xl p-6 border border-purple-500/20">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-purple-50 border border-purple-200 rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">🍽️</span>
             {locale === 'fr' ? 'Focus de Jeûne' : 'Fasting Focus'}
           </h2>
-          <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+          <div className="text-[#64748b] leading-relaxed whitespace-pre-wrap">
             {fastingFocus}
           </div>
         </section>
@@ -135,12 +135,12 @@ export function DayContent({
 
       {/* Activities */}
       {activities && (
-        <section className="bg-white/[0.02] rounded-xl p-6 border border-white/5">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">✨</span>
             {locale === 'fr' ? 'Activités' : 'Activities'}
           </h2>
-          <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+          <div className="text-[#64748b] leading-relaxed whitespace-pre-wrap">
             {activities}
           </div>
         </section>
@@ -148,16 +148,16 @@ export function DayContent({
 
       {/* Reflection Questions */}
       {reflectionQuestions && reflectionQuestions.length > 0 && (
-        <section className="bg-blue-500/5 rounded-xl p-6 border border-blue-500/20">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">💭</span>
             {locale === 'fr' ? 'Questions de Réflexion' : 'Reflection Questions'}
           </h2>
           <ol className="space-y-3">
             {reflectionQuestions.map((question, i) => (
-              <li key={i} className="text-slate-300 flex items-start gap-3">
-                <span className="text-blue-400 font-semibold">{i + 1}.</span>
-                {question}
+              <li key={i} className="text-[#64748b] flex items-start gap-3">
+                <span className="text-blue-600 font-semibold">{i + 1}.</span>
+                <span>{question}</span>
               </li>
             ))}
           </ol>
@@ -166,12 +166,12 @@ export function DayContent({
 
       {/* Family Guide */}
       {familyGuide && (
-        <section className="bg-pink-500/5 rounded-xl p-6 border border-pink-500/20">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-pink-50 border border-pink-200 rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">👨‍👩‍👧‍👦</span>
             {locale === 'fr' ? 'Guide Familial' : 'Family Guide'}
           </h2>
-          <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
+          <div className="text-[#64748b] leading-relaxed whitespace-pre-wrap">
             {familyGuide}
           </div>
         </section>
@@ -179,8 +179,8 @@ export function DayContent({
 
       {/* Personal Notes */}
       {day.notes_enabled && (
-        <section className="bg-white/[0.02] rounded-xl p-6 border border-white/5">
-          <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+        <section className="bg-white border border-[#e2e8f0] rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-[#1c1f24] mb-4 flex items-center gap-2">
             <span className="text-2xl">📝</span>
             {locale === 'fr' ? 'Notes Personnelles' : 'Personal Notes'}
           </h2>
@@ -188,14 +188,14 @@ export function DayContent({
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             placeholder={locale === 'fr' ? 'Écrivez vos réflexions ici...' : 'Write your reflections here...'}
-            className="w-full h-40 bg-slate-900/50 border border-white/10 rounded-lg p-4 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 resize-none"
+            className="w-full h-40 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl p-4 text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none"
           />
           {onSaveNotes && (
             <div className="mt-4 flex justify-end">
               <button
                 onClick={handleSaveNotes}
                 disabled={isSaving}
-                className="px-6 py-2 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors disabled:opacity-50"
+                className="px-6 py-2.5 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors disabled:opacity-50 font-medium shadow-lg shadow-emerald-500/25"
               >
                 {isSaving 
                   ? (locale === 'fr' ? 'Sauvegarde...' : 'Saving...') 

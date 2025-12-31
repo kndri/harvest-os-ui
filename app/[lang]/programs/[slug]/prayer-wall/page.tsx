@@ -2,6 +2,8 @@ import { createServerClient } from '@/lib/supabase/server';
 import { notFound } from 'next/navigation';
 import { PrayerWallClient } from '@/components/prayer/PrayerWallClient';
 import { getCurrentUser } from '@/lib/supabase/server';
+import { ProgramNav } from '@/components/programs';
+import { Program } from '@/types';
 
 export default async function PrayerWallPage({
   params,
@@ -16,7 +18,7 @@ export default async function PrayerWallPage({
   // Get program first
   const { data: program } = await supabase
     .from('programs')
-    .select('id')
+    .select('*')
     .eq('slug', slug)
     .single();
   
@@ -46,12 +48,15 @@ export default async function PrayerWallPage({
   }
   
   return (
-    <PrayerWallClient
-      requests={requests || []}
-      programId={program.id}
-      locale={locale}
-      userId={user?.id || null}
-      prayedRequestIds={prayedRequestIds}
-    />
+    <div className="min-h-screen bg-white">
+      <ProgramNav program={program as Program} locale={locale} />
+      <PrayerWallClient
+        requests={requests || []}
+        programId={program.id}
+        locale={locale}
+        userId={user?.id || null}
+        prayedRequestIds={prayedRequestIds}
+      />
+    </div>
   );
 }

@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:reset": "supabase db reset",
+    "db:seed-demo": "supabase migration up",
+    "demo": "npm run db:reset && npm run dev",
+    "test:e2e": "echo 'Run manual testing per SYSTEM_TESTING_GUIDE.md'"
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",

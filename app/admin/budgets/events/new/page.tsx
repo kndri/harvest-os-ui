@@ -27,8 +27,11 @@ export default async function NewBudgetEventPage() {
   }));
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Create Budget Event</h1>
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">Create Budget Event</h1>
+        <p className="text-[#64748b]">Set up a new budget event to track expenses and revenue</p>
+      </div>
       <BudgetEventForm organizations={organizations} />
     </div>
   );

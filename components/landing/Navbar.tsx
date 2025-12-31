@@ -2,8 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { User } from '@supabase/supabase-js';
 
-export function Navbar({ locale }: { locale: 'en' | 'fr' }) {
+interface NavbarProps {
+  locale: 'en' | 'fr';
+  user?: User | null;
+  userRole?: string | null;
+}
+
+export function Navbar({ locale, user, userRole }: NavbarProps) {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -40,7 +47,7 @@ export function Navbar({ locale }: { locale: 'en' | 'fr' }) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-slate-950/80 backdrop-blur-xl border-b border-white/5'
+          ? 'bg-white/80 backdrop-blur-xl border-b border-[#e2e8f0] shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -48,23 +55,23 @@ export function Navbar({ locale }: { locale: 'en' | 'fr' }) {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a href={`/${locale}`} className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/25">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
               <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
             </div>
-            <span className="text-xl font-bold text-white">HarvestOS</span>
+            <span className="text-xl font-bold text-[#1c1f24]">HarvestOS</span>
           </a>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#features" className="text-slate-300 hover:text-white transition-colors">
+            <a href="#features" className="text-[#64748b] hover:text-[#1c1f24] transition-colors font-medium">
               {t.features}
             </a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">
+            <a href="#" className="text-[#64748b] hover:text-[#1c1f24] transition-colors font-medium">
               {t.pricing}
             </a>
-            <a href="#" className="text-slate-300 hover:text-white transition-colors">
+            <a href="#" className="text-[#64748b] hover:text-[#1c1f24] transition-colors font-medium">
               {t.about}
             </a>
           </div>
@@ -74,30 +81,61 @@ export function Navbar({ locale }: { locale: 'en' | 'fr' }) {
             {/* Language switcher */}
             <button
               onClick={() => router.push(`/${otherLocale}`)}
-              className="px-3 py-1.5 text-sm text-slate-400 hover:text-white border border-white/10 rounded-full hover:bg-white/5 transition-all"
+              className="px-3 py-1.5 text-sm text-[#64748b] hover:text-[#1c1f24] border border-[#e2e8f0] rounded-full hover:bg-[#f2f4f6] transition-all bg-white/80 backdrop-blur-sm"
             >
               {otherLocale.toUpperCase()}
             </button>
 
-            <button
-              onClick={() => router.push('/auth/login')}
-              className="text-slate-300 hover:text-white transition-colors"
-            >
-              {t.login}
-            </button>
+            {user ? (
+              <>
+                <button
+                  onClick={() => {
+                    if (userRole === 'admin') {
+                      router.push('/admin');
+                    } else {
+                      router.push(`/${locale}/programs`);
+                    }
+                  }}
+                  className="px-5 py-2.5 bg-emerald-500 text-white font-medium rounded-full hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25 transition-all hover:scale-105"
+                >
+                  {userRole === 'admin' ? 'Dashboard' : 'My Programs'}
+                </button>
+                <button
+                  onClick={async () => {
+                    const { createClient } = await import('@/lib/supabase/client');
+                    const supabase = createClient();
+                    await supabase.auth.signOut();
+                    router.push(`/${locale}`);
+                    router.refresh();
+                  }}
+                  className="text-[#64748b] hover:text-[#1c1f24] transition-colors text-sm font-medium"
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={() => router.push('/auth/login')}
+                  className="text-[#64748b] hover:text-[#1c1f24] transition-colors font-medium"
+                >
+                  {t.login}
+                </button>
 
-            <button
-              onClick={() => router.push('/auth/login')}
-              className="px-5 py-2.5 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium rounded-full hover:shadow-lg hover:shadow-emerald-500/25 transition-all hover:scale-105"
-            >
-              {t.cta}
-            </button>
+                <button
+                  onClick={() => router.push('/auth/login')}
+                  className="px-5 py-2.5 bg-emerald-500 text-white font-medium rounded-full hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-500/25 transition-all hover:scale-105"
+                >
+                  {t.cta}
+                </button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-white"
+            className="md:hidden p-2 text-[#1c1f24]"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               {mobileMenuOpen ? (
@@ -111,38 +149,68 @@ export function Navbar({ locale }: { locale: 'en' | 'fr' }) {
 
         {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/5">
+          <div className="md:hidden py-4 border-t border-[#e2e8f0] bg-white/95 backdrop-blur-xl">
             <div className="flex flex-col gap-4">
-              <a href="#features" className="text-slate-300 hover:text-white transition-colors py-2">
+              <a href="#features" className="text-[#64748b] hover:text-[#1c1f24] transition-colors py-2 font-medium">
                 {t.features}
               </a>
-              <a href="#" className="text-slate-300 hover:text-white transition-colors py-2">
+              <a href="#" className="text-[#64748b] hover:text-[#1c1f24] transition-colors py-2 font-medium">
                 {t.pricing}
               </a>
-              <a href="#" className="text-slate-300 hover:text-white transition-colors py-2">
+              <a href="#" className="text-[#64748b] hover:text-[#1c1f24] transition-colors py-2 font-medium">
                 {t.about}
               </a>
-              <hr className="border-white/5" />
+              <hr className="border-[#e2e8f0]" />
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => router.push(`/${otherLocale}`)}
-                  className="px-3 py-1.5 text-sm text-slate-400 border border-white/10 rounded-full"
+                  className="px-3 py-1.5 text-sm text-[#64748b] border border-[#e2e8f0] rounded-full bg-white"
                 >
                   {otherLocale.toUpperCase()}
                 </button>
+                {user ? (
+                  <button
+                    onClick={async () => {
+                      const { createClient } = await import('@/lib/supabase/client');
+                      const supabase = createClient();
+                      await supabase.auth.signOut();
+                      router.push(`/${locale}`);
+                      router.refresh();
+                    }}
+                    className="text-[#64748b] font-medium"
+                  >
+                    Sign Out
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => router.push('/auth/login')}
+                    className="text-[#64748b] font-medium"
+                  >
+                    {t.login}
+                  </button>
+                )}
+              </div>
+              {user ? (
+                <button
+                  onClick={() => {
+                    if (userRole === 'admin') {
+                      router.push('/admin');
+                    } else {
+                      router.push(`/${locale}/programs`);
+                    }
+                  }}
+                  className="w-full px-5 py-3 bg-emerald-500 text-white font-medium rounded-full hover:bg-emerald-600"
+                >
+                  {userRole === 'admin' ? 'Dashboard' : 'My Programs'}
+                </button>
+              ) : (
                 <button
                   onClick={() => router.push('/auth/login')}
-                  className="text-slate-300"
+                  className="w-full px-5 py-3 bg-emerald-500 text-white font-medium rounded-full hover:bg-emerald-600"
                 >
-                  {t.login}
+                  {t.cta}
                 </button>
-              </div>
-              <button
-                onClick={() => router.push('/auth/login')}
-                className="w-full px-5 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-medium rounded-full"
-              >
-                {t.cta}
-              </button>
+              )}
             </div>
           </div>
         )}

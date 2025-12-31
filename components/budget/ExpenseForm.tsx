@@ -67,18 +67,18 @@ export function ExpenseForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg border">
-      <h3 className="text-lg font-semibold mb-4">
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl border border-[#e2e8f0] shadow-sm">
+      <h3 className="text-lg font-semibold text-[#1c1f24] mb-6">
         {lineItem ? 'Edit' : 'Add'} Expense Line Item
       </h3>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">{error}</div>
       )}
 
-      <div className="space-y-4">
+      <div className="space-y-5">
         <div>
-          <label htmlFor="category" className="block text-sm font-medium mb-1">
+          <label htmlFor="category" className="block text-sm font-semibold text-[#334e62] mb-2">
             Category *
           </label>
           <input
@@ -86,14 +86,14 @@ export function ExpenseForm({
             type="text"
             value={formData.category}
             onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             required
             placeholder="e.g., Venue, Catering, Marketing"
           />
         </div>
 
         <div>
-          <label htmlFor="description" className="block text-sm font-medium mb-1">
+          <label htmlFor="description" className="block text-sm font-semibold text-[#334e62] mb-2">
             Description *
           </label>
           <input
@@ -103,14 +103,14 @@ export function ExpenseForm({
             onChange={(e) =>
               setFormData({ ...formData, description: e.target.value })
             }
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
             required
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-5">
           <div>
-            <label htmlFor="projected_amount" className="block text-sm font-medium mb-1">
+            <label htmlFor="projected_amount" className="block text-sm font-semibold text-[#334e62] mb-2">
               Projected Amount *
             </label>
             <input
@@ -125,13 +125,13 @@ export function ExpenseForm({
                   projected_amount: parseFloat(e.target.value) || 0,
                 })
               }
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
               required
             />
           </div>
 
           <div>
-            <label htmlFor="actual_amount" className="block text-sm font-medium mb-1">
+            <label htmlFor="actual_amount" className="block text-sm font-semibold text-[#334e62] mb-2">
               Actual Amount *
             </label>
             <input
@@ -146,37 +146,37 @@ export function ExpenseForm({
                   actual_amount: parseFloat(e.target.value) || 0,
                 })
               }
-              className="w-full px-3 py-2 border rounded-lg"
+              className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all"
               required
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="notes" className="block text-sm font-medium mb-1">
+          <label htmlFor="notes" className="block text-sm font-semibold text-[#334e62] mb-2">
             Notes
           </label>
           <textarea
             id="notes"
             value={formData.notes}
             onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-            className="w-full px-3 py-2 border rounded-lg"
+            className="w-full px-4 py-3 bg-[#f2f4f6] border border-[#e2e8f0] rounded-xl text-[#1c1f24] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 resize-none transition-all"
             rows={3}
           />
         </div>
 
-        <div className="flex gap-3 pt-4">
+        <div className="flex gap-4 pt-5 border-t border-[#e2e8f0]">
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
+            className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 disabled:opacity-50 font-medium"
           >
             {loading ? 'Saving...' : lineItem ? 'Update' : 'Create'}
           </button>
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300"
+            className="px-6 py-3 bg-[#f2f4f6] text-[#334e62] rounded-xl hover:bg-[#e2e8f0] transition-colors border border-[#e2e8f0] font-medium"
           >
             Cancel
           </button>

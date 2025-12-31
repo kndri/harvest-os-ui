@@ -54,24 +54,24 @@ export function BudgetEventOverview({
   };
 
   return (
-    <div>
-      <div className="mb-6">
+    <div className="max-w-7xl mx-auto px-6 py-8">
+      <div className="mb-8">
         <button
           onClick={() => router.push('/admin/budgets')}
-          className="text-sm text-gray-600 hover:text-gray-900 mb-4"
+          className="text-sm text-[#64748b] hover:text-[#1c1f24] mb-4 font-medium transition-colors"
         >
           ← Back to Budget Events
         </button>
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-2xl font-bold">{budgetEvent.name}</h1>
+            <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">{budgetEvent.name}</h1>
             {budgetEvent.description && (
-              <p className="text-gray-600 mt-1">{budgetEvent.description}</p>
+              <p className="text-[#64748b] mt-1">{budgetEvent.description}</p>
             )}
-            <div className="flex gap-4 text-sm text-gray-600 mt-2">
+            <div className="flex gap-4 text-sm text-[#64748b] mt-2">
               {budgetEvent.start_date && (
                 <span>
-                  Start: {format(new Date(budgetEvent.start_date), 'MMM d, yyyy')}
+                  📅 Start: {format(new Date(budgetEvent.start_date), 'MMM d, yyyy')}
                 </span>
               )}
               {budgetEvent.end_date && (
@@ -82,9 +82,13 @@ export function BudgetEventOverview({
             </div>
           </div>
           <span
-            className={`px-3 py-1 text-sm font-semibold rounded ${getStatusColor(
-              budgetEvent.status
-            )}`}
+            className={`px-3 py-1 text-sm font-semibold rounded-full ${
+              budgetEvent.status === 'active'
+                ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                : budgetEvent.status === 'closed'
+                ? 'bg-[#f2f4f6] text-[#64748b] border border-[#e2e8f0]'
+                : 'bg-amber-50 text-amber-700 border border-amber-200'
+            }`}
           >
             {budgetEvent.status}
           </span>
@@ -92,19 +96,19 @@ export function BudgetEventOverview({
       </div>
 
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white p-4 rounded-lg border">
-          <h3 className="text-sm font-medium text-gray-600 mb-1">Expenses</h3>
-          <div className="text-2xl font-bold">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="bg-white p-6 rounded-xl border border-[#e2e8f0] shadow-sm">
+          <h3 className="text-sm font-semibold text-[#64748b] mb-2 uppercase tracking-wide">Expenses</h3>
+          <div className="text-3xl font-bold text-[#1c1f24] mb-1">
             ${expensesTotal.actual.toLocaleString()}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-[#64748b]">
             Budgeted: ${expensesTotal.projected.toLocaleString()}
           </div>
           {expensesTotal.variance !== 0 && (
             <div
-              className={`text-sm mt-1 ${
-                expensesTotal.variance > 0 ? 'text-red-600' : 'text-green-600'
+              className={`text-sm mt-2 font-medium ${
+                expensesTotal.variance > 0 ? 'text-red-600' : 'text-emerald-600'
               }`}
             >
               {expensesTotal.variance > 0 ? '+' : ''}
@@ -113,27 +117,27 @@ export function BudgetEventOverview({
           )}
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
-          <h3 className="text-sm font-medium text-gray-600 mb-1">Revenue</h3>
-          <div className="text-2xl font-bold">
+        <div className="bg-white p-6 rounded-xl border border-[#e2e8f0] shadow-sm">
+          <h3 className="text-sm font-semibold text-[#64748b] mb-2 uppercase tracking-wide">Revenue</h3>
+          <div className="text-3xl font-bold text-[#1c1f24] mb-1">
             ${revenueTotal.received.toLocaleString()}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-[#64748b]">
             Pledged: ${revenueTotal.pledged.toLocaleString()}
           </div>
           {revenueTotal.balance > 0 && (
-            <div className="text-sm text-gray-600 mt-1">
+            <div className="text-sm text-[#64748b] mt-2">
               Balance: ${revenueTotal.balance.toLocaleString()}
             </div>
           )}
         </div>
 
-        <div className="bg-white p-4 rounded-lg border">
-          <h3 className="text-sm font-medium text-gray-600 mb-1">Net</h3>
+        <div className="bg-white p-6 rounded-xl border border-[#e2e8f0] shadow-sm">
+          <h3 className="text-sm font-semibold text-[#64748b] mb-2 uppercase tracking-wide">Net</h3>
           <div
-            className={`text-2xl font-bold ${
+            className={`text-3xl font-bold ${
               revenueTotal.received - expensesTotal.actual >= 0
-                ? 'text-green-600'
+                ? 'text-emerald-600'
                 : 'text-red-600'
             }`}
           >
@@ -143,34 +147,34 @@ export function BudgetEventOverview({
       </div>
 
       {/* Tabs */}
-      <div className="border-b mb-6">
-        <nav className="flex gap-4">
+      <div className="border-b border-[#e2e8f0] mb-6">
+        <nav className="flex gap-6">
           <button
             onClick={() => setActiveTab('expenses')}
-            className={`pb-2 px-1 border-b-2 ${
+            className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
               activeTab === 'expenses'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-emerald-500 text-[#1c1f24]'
+                : 'border-transparent text-[#64748b] hover:text-[#1c1f24]'
             }`}
           >
             Expenses
           </button>
           <button
             onClick={() => setActiveTab('revenue')}
-            className={`pb-2 px-1 border-b-2 ${
+            className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
               activeTab === 'revenue'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-emerald-500 text-[#1c1f24]'
+                : 'border-transparent text-[#64748b] hover:text-[#1c1f24]'
             }`}
           >
             Revenue
           </button>
           <button
             onClick={() => setActiveTab('audit')}
-            className={`pb-2 px-1 border-b-2 ${
+            className={`pb-3 px-1 border-b-2 font-medium transition-colors ${
               activeTab === 'audit'
-                ? 'border-blue-600 text-blue-600'
-                : 'border-transparent text-gray-600 hover:text-gray-900'
+                ? 'border-emerald-500 text-[#1c1f24]'
+                : 'border-transparent text-[#64748b] hover:text-[#1c1f24]'
             }`}
           >
             Audit Log
