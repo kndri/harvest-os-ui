@@ -24,8 +24,8 @@ export function ProtectedRoute({
       return;
     }
 
-    // Role checking would be done here if needed
-    // For now, we'll handle it in middleware
+    // Note: RLS policies enforce access at the database level
+    // This is a client-side check for UX only
   }, [user, loading, requiredRole, router]);
 
   if (loading) {

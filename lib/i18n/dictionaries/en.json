@@ -18,5 +18,45 @@
     "signOut": "Sign Out",
     "email": "Email",
     "password": "Password"
+  },
+  "events": {
+    "title": "Events",
+    "upcoming": "Upcoming Events",
+    "past": "Past Events",
+    "noEvents": "No events scheduled.",
+    "speaker": "Speaker",
+    "addToCalendar": "Add to Calendar",
+    "backToEvents": "Back to Events",
+    "watchLive": "Watch Live"
+  },
+  "speakers": {
+    "title": "Speakers",
+    "noSpeakers": "No speakers available.",
+    "biography": "Biography",
+    "events": "Events",
+    "backToSpeakers": "Back to Speakers"
+  },
+  "prayer": {
+    "title": "Prayer Wall",
+    "submitRequest": "Submit Request",
+    "prayed": "Prayed",
+    "iPrayed": "I prayed",
+    "prayers": "prayers",
+    "anonymous": "Anonymous",
+    "by": "By",
+    "noRequests": "No approved prayer requests yet.",
+    "submitForm": "Submit a Prayer Request",
+    "yourRequest": "Your prayer request...",
+    "submitAnonymously": "Submit anonymously",
+    "submit": "Submit",
+    "submitting": "Submitting...",
+    "moderationNote": "Your request will be reviewed by a moderator before being published."
+  },
+  "resources": {
+    "title": "Resources",
+    "download": "Download",
+    "downloads": "downloads",
+    "noResources": "No resources available.",
+    "all": "All"
   }
 }

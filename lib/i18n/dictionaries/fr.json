@@ -18,5 +18,45 @@
     "signOut": "Se déconnecter",
     "email": "Courriel",
     "password": "Mot de passe"
+  },
+  "events": {
+    "title": "Événements",
+    "upcoming": "Événements à venir",
+    "past": "Événements passés",
+    "noEvents": "Aucun événement prévu.",
+    "speaker": "Conférencier",
+    "addToCalendar": "Ajouter au calendrier",
+    "backToEvents": "Retour aux événements",
+    "watchLive": "Regarder en direct"
+  },
+  "speakers": {
+    "title": "Conférenciers",
+    "noSpeakers": "Aucun conférencier disponible.",
+    "biography": "Biographie",
+    "events": "Événements",
+    "backToSpeakers": "Retour aux conférenciers"
+  },
+  "prayer": {
+    "title": "Mur de prière",
+    "submitRequest": "Soumettre une demande",
+    "prayed": "Prié",
+    "iPrayed": "J'ai prié",
+    "prayers": "prières",
+    "anonymous": "Anonyme",
+    "by": "Par",
+    "noRequests": "Aucune demande de prière approuvée pour le moment.",
+    "submitForm": "Soumettre une demande de prière",
+    "yourRequest": "Votre demande de prière...",
+    "submitAnonymously": "Soumettre anonymement",
+    "submit": "Soumettre",
+    "submitting": "Envoi...",
+    "moderationNote": "Votre demande sera examinée par un modérateur avant d'être publiée."
+  },
+  "resources": {
+    "title": "Ressources",
+    "download": "Télécharger",
+    "downloads": "téléchargements",
+    "noResources": "Aucune ressource disponible.",
+    "all": "Tous"
   }
 }
