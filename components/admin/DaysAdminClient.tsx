@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ProgramDay } from '@/types';
 import { createClient } from '@/lib/supabase/client';
 import Link from 'next/link';
+import { DayForm } from './DayForm';
 
 interface DaysAdminClientProps {
   days: ProgramDay[];
@@ -21,6 +22,8 @@ export function DaysAdminClient({
   durationDays,
 }: DaysAdminClientProps) {
   const [days, setDays] = useState(initialDays);
+  const [showForm, setShowForm] = useState(false);
+  const [editingDay, setEditingDay] = useState<ProgramDay | null>(null);
 
   const handleDelete = async (dayId: string) => {
     if (!confirm('Are you sure you want to delete this day?')) return;
@@ -41,20 +44,42 @@ export function DaysAdminClient({
     }
   };
 
+  const handleFormSuccess = () => {
+    setShowForm(false);
+    setEditingDay(null);
+    window.location.reload();
+  };
+
+  const existingDayIndexes = days.map((d) => d.day_index);
+
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8 space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">Program Days</h1>
-          <p className="text-[#64748b]">{programTitle}</p>
-        </div>
-        <Link
-          href={`/admin/programs/${programId}`}
-          className="px-4 py-2 bg-[#f2f4f6] text-[#334e62] rounded-xl hover:bg-[#e2e8f0] transition-colors font-medium border border-[#e2e8f0]"
+    <div className="space-y-6">
+      <div className="flex justify-end">
+        <button
+          onClick={() => {
+            setEditingDay(null);
+            setShowForm(true);
+          }}
+          className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 font-medium"
         >
-          ← Back to Program
-        </Link>
+          + Create Day
+        </button>
       </div>
+
+      {showForm && (
+        <div className="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
+          <DayForm
+            programId={programId}
+            day={editingDay || undefined}
+            existingDayIndexes={existingDayIndexes}
+            onSuccess={handleFormSuccess}
+            onCancel={() => {
+              setShowForm(false);
+              setEditingDay(null);
+            }}
+          />
+        </div>
+      )}
 
       {durationDays && days.length < durationDays && (
         <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl text-amber-800">
@@ -122,6 +147,15 @@ export function DaysAdminClient({
                   >
                     View
                   </Link>
+                  <button
+                    onClick={() => {
+                      setEditingDay(day);
+                      setShowForm(true);
+                    }}
+                    className="px-3 py-1.5 text-sm bg-[#f2f4f6] text-[#334e62] rounded-lg hover:bg-[#e2e8f0] transition-colors font-medium border border-[#e2e8f0]"
+                  >
+                    Edit
+                  </button>
                   <button
                     onClick={() => handleDelete(day.id)}
                     className="px-3 py-1.5 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors text-sm font-medium border border-red-200"

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Resource } from '@/lib/types';
 import { createClient } from '@/lib/supabase/client';
 import { ResourceUploadForm } from './ResourceUploadForm';
+import { ResourceEditForm } from './ResourceEditForm';
 
 interface ResourcesAdminClientProps {
   resources: Resource[];
@@ -16,6 +17,7 @@ export function ResourcesAdminClient({
 }: ResourcesAdminClientProps) {
   const [resources, setResources] = useState(initialResources);
   const [showForm, setShowForm] = useState(false);
+  const [editingResource, setEditingResource] = useState<Resource | null>(null);
 
   const handleDelete = async (resourceId: string) => {
     if (!confirm('Are you sure you want to delete this resource?')) return;
@@ -48,6 +50,12 @@ export function ResourcesAdminClient({
 
   const handleFormSuccess = () => {
     setShowForm(false);
+    setEditingResource(null);
+    window.location.reload();
+  };
+
+  const handleEditFormSuccess = () => {
+    setEditingResource(null);
     window.location.reload();
   };
 
@@ -59,12 +67,8 @@ export function ResourcesAdminClient({
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8">
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-[#1c1f24] mb-2">Resources</h1>
-          <p className="text-[#64748b]">Manage program resources and files</p>
-        </div>
+    <>
+      <div className="flex justify-end mb-6">
         <button
           onClick={() => setShowForm(true)}
           className="px-6 py-3 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 font-medium"
@@ -79,6 +83,16 @@ export function ResourcesAdminClient({
             programId={programId}
             onSuccess={handleFormSuccess}
             onCancel={() => setShowForm(false)}
+          />
+        </div>
+      )}
+
+      {editingResource && (
+        <div className="mb-8 bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-sm">
+          <ResourceEditForm
+            resource={editingResource}
+            onSuccess={handleEditFormSuccess}
+            onCancel={() => setEditingResource(null)}
           />
         </div>
       )}
@@ -102,12 +116,23 @@ export function ResourcesAdminClient({
                     </span>
                   )}
                 </div>
-                <button
-                  onClick={() => handleDelete(resource.id)}
-                  className="px-3 py-1.5 text-sm bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium border border-red-200"
-                >
-                  Delete
-                </button>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => {
+                      setEditingResource(resource);
+                      setShowForm(false);
+                    }}
+                    className="px-3 py-1.5 text-sm bg-[#f2f4f6] text-[#334e62] rounded-lg hover:bg-[#e2e8f0] transition-colors font-medium border border-[#e2e8f0]"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDelete(resource.id)}
+                    className="px-3 py-1.5 text-sm bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors font-medium border border-red-200"
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
               {resource.description_en && (
                 <p className="text-sm text-[#64748b] mb-3">{resource.description_en}</p>
@@ -126,6 +151,6 @@ export function ResourcesAdminClient({
           <p className="text-[#64748b] font-medium">No resources yet.</p>
         </div>
       )}
-    </div>
+    </>
   );
 }
