@@ -8,7 +8,7 @@ export async function middleware(request: NextRequest) {
   // Handle locale routing
   const pathnameHasLocale = /^\/(en|fr)(\/|$)/.test(pathname);
   
-  if (!pathnameHasLocale && !pathname.startsWith('/api') && !pathname.startsWith('/_next') && !pathname.startsWith('/auth')) {
+  if (!pathnameHasLocale && !pathname.startsWith('/api') && !pathname.startsWith('/_next') && !pathname.startsWith('/auth') && !pathname.startsWith('/admin')) {
     const locale = 'en';
     return NextResponse.redirect(
       new URL(`/${locale}${pathname}`, request.url)
