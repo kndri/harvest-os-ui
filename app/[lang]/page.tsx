@@ -4,9 +4,10 @@ import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 export default async function HomePage({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const locale = params.lang as 'en' | 'fr';
+  const { lang } = await params;
+  const locale = lang as 'en' | 'fr';
   const dict = getDictionary(locale);
 
   return (

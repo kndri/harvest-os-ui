@@ -1,15 +1,18 @@
 'use client';
 
 import { useRouter, usePathname } from 'next/navigation';
-import Link from 'next/link';
 
 export function LanguageSwitcher({ currentLocale }: { currentLocale: 'en' | 'fr' }) {
   const router = useRouter();
   const pathname = usePathname();
   
   const switchLanguage = (newLocale: 'en' | 'fr') => {
-    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`);
+    if (newLocale === currentLocale) return;
+    
+    // Replace the locale in the pathname
+    const newPath = pathname.replace(`/${currentLocale}`, `/${newLocale}`) || `/${newLocale}`;
     router.push(newPath);
+    router.refresh();
   };
 
   return (
